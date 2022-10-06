@@ -3,8 +3,13 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
+ template-criado
 export abstract class BaseDatabase{
   protected   connection = knex({
+
+export class BaseDatabase{
+  protected static  connection = knex({
+ master
    client: "mysql",
    connection: {
       host: process.env.DB_HOST,
