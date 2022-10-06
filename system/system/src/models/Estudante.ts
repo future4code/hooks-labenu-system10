@@ -5,15 +5,15 @@ export class Estudante {
     public email:string
     public data_nasc:string
     public turma_id:Number
-    public hobbies:[]
+    public hobbies:string
 
-    constructor(id:Number,name:string,email:string,data_nasc:string,turma_id:Number,hobbies:[]){
-        this.id=id,
-        this.name=name,
-        this.email=email,
-        this.data_nasc=data_nasc,
-        this.turma_id=turma_id
-        this.hobbies=hobbies
+    constructor(id:Number,name:string,email:string,data_nasc:string,turma_id:Number,hobbies:string){
+      this.id=id,
+      this.name=name,
+      this.email=email,
+      this.data_nasc=data_nasc,
+      this.turma_id=turma_id
+      this.hobbies=hobbies
     }
   getid(){
     return this.id
