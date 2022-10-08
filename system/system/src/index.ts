@@ -1,26 +1,83 @@
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import { ping } from './endpoints/ping'
-import {getStudent} from "./endpoints/getAllStudent"
-import {createDocente} from "./endpoints/createDocente"
-import {createStudent} from "./endpoints/createStudent"
+import { app } from "./app";
+import { Request, Response } from "express";
+import { TurmaController } from "./controller/TurmaController";
+import EstudanteController from "./controller/EstudanteController";
+import DocenteController from "./controller/DocenteController";
+import { EspecialidadesController } from "./controller/EspecialidadesController";
+import { HobbyController } from "./controller/HobbyController";
 
-dotenv.config()
-const app = express()
+/*  TURMAS  */
 
-app.use(express.json())
-app.use(cors())
+//GET - Pega todas as turmas:
+const getTurmas = new TurmaController();
+app.get("/turmas", getTurmas.getTurmas);
 
-app.listen(process.env.PORT || 3003, () => {
-  console.log(`Servidor rodando na porta ${process.env.PORT || 3003}`)
-})
+//GET- Pega turmas ativas:
+const getTurmasAtivas = new TurmaController();
+app.get("/turmas-ativas", getTurmasAtivas.getTurmaAtiva);
 
-app.get("/ping", ping)
+//POST - Create turmas:
+const turmaController = new TurmaController();
+app.post("/turmas", turmaController.criarTurma);
+
+//PUT - Update turmas:
+const updateModulo = new TurmaController();
+app.put("/turmas", updateModulo.changeModule);
 
 
-app.get("/GetAllStudent", getStudent)
+/*  ESTUDANTES  */
 
-app.post("/CreateDocente", createDocente)
+//GET - Pega todos os estudantes:
+const getEstudante = new EstudanteController();
+app.get("/estudantes", getEstudante.getStudent);
 
-app.post("/CreateStudent",createStudent)
+//GET -  Pega estudante por nome:
+const getEstudantePorNome = new EstudanteController();
+app.get("/estudantes/:nome", getEstudantePorNome.getStudentByName);
+
+//POST - Create estudante:
+const estudanteController = new EstudanteController();
+app.post("/estudantes", estudanteController.createStudent);
+
+const updateEstudante = new EstudanteController();
+app.put("/estudantes", updateEstudante.changeEstudante);
+
+
+/*  DOCENTES  */
+
+//GET - Pega docentes:
+const getDocentes = new DocenteController();
+app.get("/docentes", getDocentes.getAllTeachers);
+
+//POST - Create docente:
+const docenteController = new DocenteController();
+app.post("/docentes", docenteController.createTeachers);
+
+//PUT - Update docente:
+const updateModuloDocente = new DocenteController();
+app.put("/docentes", updateModuloDocente.changeModuleTeachers);
+
+
+/*  ESPECIALIDADES  */
+
+//GET - Pega especialidade:
+const getEspecialidade = new EspecialidadesController();
+app.get("/especialidade", getEspecialidade.getEspecialidades);
+
+//POST - Create Especialidade:
+const especialidadeController = new EspecialidadesController();
+app.post("/especialidade", especialidadeController.criarEspecialidades);
+
+// GET - Pega Hobby:
+const getHobby = new HobbyController();
+app.get("/hobby", getHobby.getHobby);
+
+// POST - Create Hobby:
+const hobbies = new HobbyController();
+app.post("/hobby", HobbyController.criarHobby);
+
+
+/* */
+app.get("/test", (req: Request, res: Response) => {
+  res.status(200).send("Servidor em pé! 👣");
+});
