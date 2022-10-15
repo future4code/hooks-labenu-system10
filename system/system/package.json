@@ -8,6 +8,10 @@
     "start": "tsc && node ./build/index.js",
     "dev": "ts-node-dev ./src/index.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/future4code/hooks-labenu-system10"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

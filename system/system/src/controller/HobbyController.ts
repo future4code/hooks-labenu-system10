@@ -4,6 +4,9 @@ import { Hobby } from "../database/Classes/Hobby";
 import { HobbyDatabase } from "../database/DataBases/HobbyDataBase";
 
 export class HobbyController{
+  static criarHobby(arg0: string, criarHobby: any) {
+    throw new Error("Method not implemented.");
+  }
   criarHobby =async (req: Request, res: Response): Promise<void> => {
       let statusCode = 400;
       try {
